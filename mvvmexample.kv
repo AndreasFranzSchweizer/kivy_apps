@@ -1,0 +1,30 @@
+#:kivy 2.0.0
+
+BoxLayout:
+    orientation: 'vertical'
+
+    Label:
+        text: 'Title:'
+
+    TextInput:
+        id: text_input_title
+        multiline: False
+        text: app.view_model.title
+        on_text: app.view_model.title = self.text
+
+    Label:
+        text: 'Description:'
+
+    TextInput:
+        id: text_input_description
+        multiline: True
+        text: app.view_model.description
+        on_text: app.view_model.description = self.text
+
+    Button:
+        text: 'GetRecord'
+        on_press: app.read_values(self)
+
+    Button:
+        text: 'InsertRecord'
+        on_press: app.write_values(self)
