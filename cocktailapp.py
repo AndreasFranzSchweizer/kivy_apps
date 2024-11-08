@@ -104,10 +104,6 @@ class CocktailDatabase():
         
         self.session.commit()
 
-        bloody_mary = CocktailDataModel("Bloody Mary")
-        self.session.add(bloody_mary)
-        self.session.commit()
-
 class ViewModel(EventDispatcher):
     def __init__(self, cocktail_database):
         self.cocktails = cocktail_database.get_cocktails()
