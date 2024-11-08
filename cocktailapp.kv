@@ -1,0 +1,39 @@
+#:kivy 2.0.0
+<CustomItem>:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 5
+
+    Label:
+        text: root.name
+        font_size: '18sp'
+        bold: True
+
+    Label:
+        text: root.quantity
+        font_size: '14sp'
+        color: 0.7, 0.7, 0.7, 1
+
+RelativeLayout:
+    Spinner:
+        size_hint: 0.6, 0.1
+        pos_hint: {'center_x': 0.5, 'center_y': 0.9}
+        text: 'Cocktails'
+        values: app.view_model.cocktails
+        on_text: app.selection_changed(self.text)
+
+    RecycleView:
+        size_hint: 0.6, 0.6
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        data: app.view_model.ingredients
+        viewclass: 'Label'
+        RecycleBoxLayout:
+            viewclass: 'CustomItem'
+            orientation: 'vertical'
+            default_size: None, dp(56)
+            default_size_hint: 1, None
+            size_hint_y: None
+            height: self.minimum_height
+            Label:
+                id: ingredients
+                text: 'Ingredients'
