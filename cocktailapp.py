@@ -106,6 +106,7 @@ class CocktailDatabase():
 
 class ViewModel(EventDispatcher):
     def __init__(self, cocktail_database):
+        self.selected_cocktail = ''
         self.cocktails = cocktail_database.get_cocktails()
         self.ingredients = [{'name': 'Select a cocktail', 'quantity': ''}]
 
@@ -127,7 +128,15 @@ class CocktailApp(App):
         return self.root
     
     def selection_changed(self, value):
+        self.view_model.selected_cocktail = value
         self.view_model.ingredients = self.database.get_ingredients(value)
+
+    def order(self):
+        print("Ordering")
+        print("Selected cocktail:")
+        print(self.view_model.selected_cocktail)
+        for ingredient in self.view_model.ingredients:
+            print(f"{ingredient['quantity']} {ingredient['name']}")
 
 
 if __name__ == '__main__':
